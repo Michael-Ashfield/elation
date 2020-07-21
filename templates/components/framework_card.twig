@@ -1,0 +1,25 @@
+<div class="col-md-4">
+	<div class="framework_card">
+		<div class="framework_card_header">
+			<img src="{{ framework.thumbnail.src }}" class="my-thumb-class" alt="Image for {{ framework.title }}"/>
+			<p>
+				<span class="framework_growth">growth</span><br/>
+				<span class="framework_name">{{framework.title}}</span>
+			</p>
+		</div>
+		<div class="framework_body">
+			<p class="framework_description">{{framework.description}}</p>
+			<div class="framework_points">
+				<p>
+					<b>Perfect for your business if you can:
+					</b>
+				</p>
+				{{framework.points}}
+			</div>
+
+			<a href="#" class="primary arrow_link arrow_link_right" title="Read {{framework.title}}">LEARN MORE
+				<i class="fas fa-long-arrow-alt-right"></i>
+			</a>
+		</div>
+	</div>
+</div>

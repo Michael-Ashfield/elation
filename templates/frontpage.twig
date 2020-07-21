@@ -1,0 +1,185 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div id="content_wrapper" class="content_wrapper">
+		<div id="hero_carousel" class="carousel slide hero_carousel" data-ride="carousel">
+			<div class="carousel-inner">
+				{% for hero in post.meta('hero_list') %}
+					{% include "components/hero_slide.twig" with {hero: hero, index: loop.index} %}
+				{% endfor %}
+			</div>
+			<div class="container">
+				<div class="row">
+					<ol class="carousel-indicators col-sm-12">
+						<li data-target="#hero_carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#hero_carousel" data-slide-to="1"></li>
+						<li data-target="#hero_carousel" data-slide-to="2"></li>
+					</ol>
+					<a class="carousel-control-next carousel-control col" href="#hero_carousel" role="button" data-slide="next">
+						<i class="fas fa-arrow-right carousel-control-icon" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<section class="offer_section" style="background-image: url({{ Image(offer_background).src }});">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="offer_section_box offer_section_main">
+							<p class="h1 underlined">For those who know they can be more
+								<span>successful,</span>
+								the time is now.</p>
+						</div>
+					</div>
+					<div class="col-sm-4 offset-sm-2">
+						<div class="offer_section_box offer_section_secondry">
+							<p>The Growth Academy gives business leaders the tools to implement a blueprint for attaining growth. Using a unqiue and proven methodology, we enable you to create a healthier and efficient team that will transform sales and break through barriers to let your business thrive.</p>
+							<a class="button skew_button" href="#">What we offer<span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="product_section">
+			<div class="container">
+				<div class="row product_section_header">
+					<div class="col-10 offset-1">
+						<p class="caption underlined underlined_alt">It's time to make your business
+							<span>awesome.</span>
+						</p>
+						<h2 class="product_section_paragraph">We are the only company in the UK to offer this completly unique system of business assessment and transformation.</h2>
+					</div>
+				</div>
+				<div class="row">
+					{% for framework in frameworks|reverse %}
+						{% include "components/framework_card.twig" with {framework: framework} %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		<style>
+			.about_section {
+				background-image: url({{ Image(offer_background).src }});
+			}
+			@media(max-width: 575.98px) {
+				.about_section {
+					background-image: url({{ Image(green_background).src }});
+				}
+			}
+		</style>
+		<section class="about_section">
+			<div class="container">
+				<div class="row">
+					<img src="{{ karen_background.src }}" class="my-thumb-class" alt="Image for {{ post.title }}"/>
+					<div class="col-md-4 offset-md-8">
+						<div class="about_card">
+							<h2 class="underlined">
+								<span>Passionate</span>
+								about success & growth.</h2>
+							<p>Our expertise is delivered by people who are passionate about success and growth. We've been there. We know about success and failure, but now we use that knowledge to your advantage.</p>
+							<div class="button_box">
+								<a class="skew_button skew_button_alt" href="#">About us<span></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="testimonial_section">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div id="testimonial_carousel" class="carousel slide testimonial_carousel" data-ride="carousel">
+							<ol class="carousel-indicators carousel-indicators-alt">
+								<li data-target="#testimonial_carousel" data-slide-to="0" class="active"></li>
+								<li data-target="#testimonial_carousel" data-slide-to="1"></li>
+								<li data-target="#testimonial_carousel" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner">
+								{% for testimonial in post.meta('testimonials') %}
+									{% include "components/testimonial_slide.twig" with {testimonial: testimonial, index: loop.index} %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="client_section">
+							<p class="client_title">People we work with</p>
+							<div id="client_carousel" class="carousel slide client_carousel" data-ride="carousel">
+								<div class="carousel-inner">
+									{% for client in clients|reverse %}
+										{% if loop.index == 1 or loop.index == 5 %}
+											<div class="carousel-item {{loop.index == 1 ? " active" : " "}}">
+												<div class="container">
+													<div class="row">
+													{% endif %}
+													<div class="col-md-3">
+														<div class="client_image_col">
+															<img src="{{ client.thumbnail.src }}" class="my-thumb-class" alt="Image for {{ client.title }}"/>
+														</div>
+													</div>
+													{% if loop.index == 4 or loop.index == 8 %}
+													</div>
+												</div>
+											</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+								<a class="carousel-control-prev carousel-control" href="#client_carousel" role="button" data-slide="prev">
+									<span>
+										<i class="fas fa-arrow-left"></i>
+									</span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next carousel-control" href="#client_carousel" role="button" data-slide="next">
+									<span>
+										<i class="fas fa-arrow-right"></i>
+									</span>
+									<span class="sr-only">Next</span>
+								</a>
+								<ol class="carousel-indicators carousel-indicators-alt">
+									<li data-target="#client_carousel" data-slide-to="0" class="active"></li>
+									<li data-target="#client_carousel" data-slide-to="1"></li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="blog_section">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="blog_title">
+						<h1 class="underlined underlined_alt">The
+							<span>latest</span>
+						</h1>
+						<a href="#" class="blog_read_all" title="Read all news">ALL NEWS
+							<i class="fas fa-long-arrow-alt-right"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="row blog_list">
+				{% for blog in blogs %}
+					{% include "components/blog_card.twig" with {blog: blog, index: loop.index} %}
+				{% endfor %}
+			</div>
+			<a href="#" class="blog_read_all_mobile  arrow_link arrow_link_right" title="Read all news">ALL NEWS
+				<i class="fas fa-long-arrow-alt-right"></i>
+			</a>
+		</div>
+	</div>
+</div>{% endblock %}

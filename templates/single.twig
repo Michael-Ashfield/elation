@@ -1,39 +1,68 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
+	<div id="content_wrapper" class="content-wrapper">
 		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
-				<a href="{{ post.link }}">{{ _e('edit') }}</a>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-				</p>
-				<div class="article-body">
-					{{post.content}}
+			<section class="article_header" style="background-image: url({{green_background.src}})">
+				<div class="container">
+					<div class="row">
+						<div class="offset-md-1 col-md-7">
+							<div class="article_header_card">
+								<time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+								<h1 class="article-h1">{{ post.title }}</h1>
+								<p class="article_category underlined">
+									<span>{{post.category}}</span>
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
-
-			<!-- comment box -->
-			<section class="comment-box">
-				<!-- comments -->
-				<div class="comments">
-				    {% if post.comments %}
-					<h3> comments </h3>
-					{% for cmt in post.comments %}
-					    {% include "comment.twig" with {comment:cmt} %}
-					{% endfor %}
-				    {% endif %}
+			<section class="article_content">
+				<div class="article_body">
+					<div class="container">
+						<div class="row">
+							<div class="offset-md-1 col-md-7">
+								{{post.content}}
+							</div>
+						</div>
+					</div>
 				</div>
-
-				{% if post.comment_status == "closed" %}
-					<p> comments for this post are closed </p>
-				{% else %}
-				    <!-- comment form -->
-				    {% include "comment-form.twig" %}
-				{% endif %}
+			</section>
+			<section class="article_after">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-3 offset-sm-1">
+							<a href="#" class="primary">
+								<i class="fas fa-long-arrow-alt-left"></i>
+								ALL ARTICLES</a>
+						</div>
+						<div class="col-sm-4 article_share">
+							<span class="article_share_text">Share:
+							</span>
+							{% include "components/social_icon.twig" %}</div>
+					</div>
+				</div>
+				<section class="blog_section">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div class="blog_title">
+									<h1 class="underlined underlined_alt">Related
+										<span>articles</span>
+									</h1>
+								</div>
+							</div>
+						</div>
+						<div class="row blog_list">
+							{% for blog in blogs %}
+								{% include "components/blog_card.twig" with {blog: blog, index: loop.index} %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
 			</section>
 		</article>
-	</div><!-- /content-wrapper -->
+	</div>
+	<!-- /content-wrapper -->
 {% endblock %}

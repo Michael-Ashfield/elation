@@ -1,0 +1,15 @@
+<div class="carousel-item hero_carousel_item {{index == 1 ? " active" : " "}}" style="background-image: url({{ Image(hero.picture).src }});">
+	<div class="container">
+		<div class="row">
+			<div class="hero_caption col-6">
+				<div class="hero_quote caption underlined">{{hero.description}}</div>
+				{% if hero.has_a_button %}
+					<div class="button_container">
+						<a class="skew_button skew_button_alt" href="{{hero.button_url}}">LEARN MORE<span></span>
+						</a>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

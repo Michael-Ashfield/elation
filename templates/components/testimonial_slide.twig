@@ -1,0 +1,20 @@
+<div class="carousel-item {{index == 1 ? " active" : " "}}">
+	<div class="container">
+		<div class="row testimonial_row">
+			<div class="col-md-6 testimonial_quote_col">
+				<div class="carousel-caption">
+					<p class="testimonial_quote quote_marked">{{testimonial.quote}}</p>
+					<div class="testimonial_author">
+						<p>{{testimonial.name}},
+							{{testimonial.position}}<br>
+							{{testimonial.company}}</p>
+						<p class="testimonial_product">{{testimonial.product}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 testimonial_image_col">
+				<img src="{{ Image(testimonial.image).src }}" alt="">
+			</div>
+		</div>
+	</div>
+</div>

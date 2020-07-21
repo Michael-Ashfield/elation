@@ -1,0 +1,12 @@
+<div class="col-md-4">
+	<a href="{{blog.link}}" class="blog_card {{index == 2 ? "blog_drop" : "blog_up"}}" style="background-image: url({{ blog.thumbnail.src }})">
+		<div class="blog_card_main">
+			<p class="underlined blog_category">
+				<span>{{blog.category}}</span>
+			</p>
+			<h2>{{blog.title}}</h2>
+			<p class="blog_date">{{blog.date}}</p>
+		</div>
+		<span class="blog_hover_span"></span>
+	</a>
+</div>

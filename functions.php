@@ -1,6 +1,6 @@
 <?php
 /**
- * Timber starter-theme
+ * Elation
  * https://github.com/timber/starter-theme
  *
  * @package  WordPress
@@ -81,11 +81,13 @@ class StarterSite extends Timber\Site {
 	 * @param string $context context['this'] Being the Twig's {{ this }}.
 	 */
 	public function add_to_context( $context ) {
-		$context['foo']   = 'bar';
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
-		$context['menu']  = new Timber\Menu();
+		$context['menu']  = new \Timber\Menu( 'main' );
 		$context['site']  = $this;
+		$context['site_icon'] = new Timber\Image(106);
+		$context['yellow_background'] = new Timber\Image(113);
+		$context['green_background'] = new Timber\Image(118);
 		return $context;
 	}
 
@@ -165,3 +167,21 @@ class StarterSite extends Timber\Site {
 }
 
 new StarterSite();
+
+
+
+/** Custom functions */
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
+
+function my_scripts() {
+	wp_enqueue_style('bootstrap4', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
+	wp_enqueue_style('bootstrap4fontawesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+	wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');						
+    wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.3.1.slim.min.js', array( 'jquery' ),'',true );
+    wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array( 'jquery' ),'',true );
+	wp_enqueue_script( 'boot3','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array( 'jquery' ),'',true );
+    wp_enqueue_script( 'custom', get_template_directory_uri() . '/static/site.js', array( 'jquery' ),'',true );
+
+}
+add_action( 'wp_enqueue_scripts', 'my_scripts' );
